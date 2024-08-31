@@ -2,7 +2,8 @@
    "blogs": [{
         "title": "K3s install on Rock64",
         "date": "2024-08-31",
-         "content": "On the masternode change to root sudo su - then run the following command to install k3s: <br/> curl -sfL https://get.k3s.io | K3S_KUBECONFIG_MODE=\"644\" sh -",
-        "thumbnail": "https://www.w3schools.com/howto/img_forest.jpg"
+        "content": "An guide on how to install K3s on a Rock64. K3s is a lightweight Kubernetes distribution. The Rock64 is a single-board computer.",
+        "thumbnail": "https://www.w3schools.com/howto/img_forest.jpg",
+        "url": "https://mariuscloete.github.io/blog/2024-08-31-k3s-install-on-rock64.html"
     }]
 }
