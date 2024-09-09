@@ -1,7 +1,12 @@
-.lead .text-left {
+.lead, .text-left {
     text-align: left;
 }
-
+.jumbotron, .text-center {
+    text-align: center;
+}
+P {
+    text-align: left;
+}
 
 /* unvisited link */
 a:link {
