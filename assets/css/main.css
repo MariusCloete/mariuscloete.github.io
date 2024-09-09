@@ -1,0 +1,24 @@
+.lead .text-left {
+    text-align: left;
+}
+
+
+/* unvisited link */
+a:link {
+    color: rgb(14, 14, 20);
+  }
+  
+  /* visited link */
+  a:visited {
+    color: rgb(14, 14, 20);
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: rgb(14, 14, 20);
+  }
+  
+  /* selected link */
+  a:active {
+    color: rgb(14, 14, 20);
+  }
