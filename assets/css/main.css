@@ -16,6 +16,8 @@ a:link {
   /* mouse over link */
   a:hover {
     color: rgb(14, 14, 20);
+    transform: none;
+    font-size: larger;
   }
   
   /* selected link */
