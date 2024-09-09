@@ -3,7 +3,7 @@
         "title": "K3s install on Rock64",
         "date": "2024-08-31",
         "content": "An guide on how to install K3s on a Rock64. K3s is a lightweight Kubernetes distribution. The Rock64 is a single-board computer.",
-        "thumbnail": "https://marius.cloete/assets/thumbnail/container_k3s.png",
+        "thumbnail": "https://mariuscloete.github.io/assets/thumbnail/container_k3s.png",
         "url": "https://mariuscloete.github.io/blog/2024-08-31-k3s-install-on-rock64.html"
     }]
 }
