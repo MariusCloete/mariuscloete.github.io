@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <title>The Archive</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../assets/css/main.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">...</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                <li><a href="#" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>Album</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+  <main role="main">
+
+    <section class="jumbotron text-center">
+      
+      <div class="container">
+        <h1 class="jumbotron-heading">Installing and confurering private Docker registry</h1>
+        <p class="lead text-left">
+          This is a guide on how to install and configure a private Docker registry on Unraid. A private Docker registry is a great way to store your Docker images and share them with your team. It is also a great way to speed up your builds by caching your images locally.
+        </p>
+        <p>
+          DockerRegistry is a great tool for this. You can find the documentation <a href="https://docs.docker.com/registry/" >here (DockerRegistry)</a>          
+        </p>
+        <p>
+          Select vairable from the Config Type: dropdown<br/>
+        </p>
+        <p>
+          Add the following variables:<br/>
+        </p>  
+        <p>
+          Name: REGISTRY_AUTH_HTPASSWD_PATH: Key: REGISTRY_AUTH_HTPASSWD_PATH Value: /auth/htpasswd<br/>
+        </p>
+        <p>
+          Name: REGISTRY_HTTP_TLS_CERTIFICATE: Key: REGISTRY_HTTP_TLS_CERTIFICATE Value: /certs/certificate.crt<br/>
+        </p>
+        <p>
+          Name: REGISTRY_HTTP_TLS_KEY: Key: REGISTRY_HTTP_TLS_KEY Value: /certs/private.key<br/>
+        </p>
+        <p>
+          Select path from the Config Type: dropdown<br/>
+        </p>
+        <p>
+          Add the following paths:<br/>
+        </p>    
+        <p>
+          Name: auth: Container Path: /auth Value: /mnt/user/appdata/registry/auth<br/>
+        </p>
+        <p>
+          Name: certs: Container Path: /certs Value: /mnt/user/appdata/registry/certs<br/>
+        </p>
+        <p>
+          This will create a private Docker registry with basic authentication. You can now push and pull images from your registry.
+        </p>
+        <p>
+          On the container we will need to make to following changes:<br/>
+        </p>
+        <p>
+            <code>cd  /mnt/user/appdata/registry</code>
+            <code>mkdir auth</code>
+            <code>mkdir certs</code>
+            <code>docker run --entrypoint htpasswd httpd:2 -Bbn [user_name] [password] > auth/htpasswd</code>
+        </p>
+        <p>
+            <code>sudo apt-get update</code>    
+            <code>sudo apt-get install openssl</code>
+            <code>openssl genrsa -out private.key 2048</code>
+            <code>echo "
+                [ req ]
+                default_bits        = 2048
+                distinguished_name  = req_distinguished_name
+                req_extensions      = req_ext
+                x509_extensions     = v3_ca # The default uses v3_ca for self-signed certs
+                prompt              = no
+                
+                [ req_distinguished_name ]
+                C                   = NL
+                ST                  = North Holland
+                L                   = Amsterdam
+                O                   = MyCompany
+                CN                  = enter your domain or host ip name here
+                
+                [ req_ext ]
+                subjectAltName      = @alt_names
+                
+                [ v3_ca ]
+                subjectAltName      = @alt_names
+                
+                [ alt_names ]
+                IP.1                = enter your domain or host ip name here
+                DNS.1               = tower" > openssl.cnf</code>
+            <code>openssl req -x509 -new -key private.key -out certificate.crt -days 365 -config openssl.cnf</code>    
+        </p>
+        <p>
+          This will create a self-signed certificate for your registry. You can now push and pull images from your registry.
+        </p>
+        <p>
+            Copy the certificate and key to the registry <stong>cert</stong>folder :<br/>
+        </p>    
+        <p>
+            <code>cp certificate.crt /mnt/user/appdata/registry/certs</code>
+            <code>cp private.key /mnt/user/appdata/registry/certs</code>
+        </p>
+        <p>
+            <img src="https://mariuscloete.github.io/assets/images/docker_registry.png" alt="registry" width="500" height="600">
+        </p>
+        <p>
+            Restart the container and you should now be able to access your registry on https://[your-ip]:5000
+        </p>
+        <p>
+            If you are connecting from a remote machine you will need to add the certificate to your trusted certificates.
+            <code>scp certificate.crt remoteuser@remotehost:/etc/docker/certs.d/[docker-registry-ip]:5000/ca.crt</code>
+            <code>sudo systemctl restart docker</code>
+        </p>
+        <p>
+            You can now push and pull images from your registry.
+        </p>
+        <p>
+            If you are using a self-signed certificate you will need to add the certificate to your trusted certificates.
+        </p>    
+        <p>
+            <code>docker login [docker-registry-ip]:5000</code>
+            <code>docker tag [docker-registry-ip]:5000/[image-name]</code>
+            <code>docker push [docker-registry-ip]:5000/[image-name]</code>
+            <code>curl -X GET https://[docker-registry-ip]:5000/v2/_catalog</code>
+        </p>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row" id="cards-container">
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Back to top</a>
+      </p>
+      <p>Archive</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="../assets/js/vendor/popper.min.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <script src=".../assets/js/vendor/holder.min.js"></script>
+</body>
+</html>
