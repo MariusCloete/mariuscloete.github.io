@@ -11,8 +11,8 @@
         "title": "Installing and confurering private Docker registry", 
         "date": "2024-09-09",     
         "content" : "This is a guide on how to install and configure a private Docker registry on Unraid. A private Docker registry is a great way to store your Docker images and share them with your team. It is also a great way to speed up your builds by caching your images locally.",   
-        "thumbnail" : "https://mariuscloete.github.io/assets/thumbnails/container_registry.png",
-        "url": "https://mariuscloete.github.io/blog/2024-09-09-private-docker-registry.html",
+        "thumbnail" : "https://mariuscloete.github.io/assets/thumbnails/unraid_reg.png",
+        "url": "https://mariuscloete.github.io/blog/2024-09-09-unraid-private-registry.html",
         "tags": ["docker", "registry", "unraid"]
     }
     ]
