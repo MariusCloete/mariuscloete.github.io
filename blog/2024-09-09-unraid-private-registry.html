@@ -128,6 +128,9 @@
             <code>openssl req -x509 -new -key private.key -out certificate.crt -days 365 -config openssl.cnf</code><br/>
         </p>
         <p>
+          <img src="https://mariuscloete.github.io/assets/images/docker_registery/unraid_config.png" alt="registry" height="100">
+      </p>
+        <p>
           This will create a self-signed certificate for your registry. You can now push and pull images from your registry.
         </p>
         <p>
@@ -137,9 +140,7 @@
             <code>cp certificate.crt /mnt/user/appdata/registry/certs</code><br/>
             <code>cp private.key /mnt/user/appdata/registry/certs</code><br/>
         </p>
-        <p>
-            <img src="https://mariuscloete.github.io/assets/images/docker_registry/unraid config.png" alt="registry" width="500" height="600">
-        </p>
+       
         <p>
             Restart the container and you should now be able to access your registry on https://[your-ip]:5000
         </p>
