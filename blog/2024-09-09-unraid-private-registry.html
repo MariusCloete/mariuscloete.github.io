@@ -92,40 +92,40 @@
           On the container we will need to make to following changes:<br/>
         </p>
         <p>
-            <code>cd  /mnt/user/appdata/registry</code>
-            <code>mkdir auth</code>
-            <code>mkdir certs</code>
-            <code>docker run --entrypoint htpasswd httpd:2 -Bbn [user_name] [password] > auth/htpasswd</code>
+            <code>cd  /mnt/user/appdata/registry</code><br/>
+            <code>mkdir auth</code><br/>
+            <code>mkdir certs</code><br/>
+            <code>docker run --entrypoint htpasswd httpd:2 -Bbn [user_name] [password] > auth/htpasswd</code><br/>
         </p>
         <p>
-            <code>sudo apt-get update</code>    
-            <code>sudo apt-get install openssl</code>
-            <code>openssl genrsa -out private.key 2048</code>
-            <code>echo "
-                [ req ]
-                default_bits        = 2048
-                distinguished_name  = req_distinguished_name
-                req_extensions      = req_ext
-                x509_extensions     = v3_ca # The default uses v3_ca for self-signed certs
-                prompt              = no
-                
-                [ req_distinguished_name ]
-                C                   = NL
-                ST                  = North Holland
-                L                   = Amsterdam
-                O                   = MyCompany
-                CN                  = enter your domain or host ip name here
-                
-                [ req_ext ]
-                subjectAltName      = @alt_names
-                
-                [ v3_ca ]
-                subjectAltName      = @alt_names
-                
-                [ alt_names ]
-                IP.1                = enter your domain or host ip name here
-                DNS.1               = tower" > openssl.cnf</code>
-            <code>openssl req -x509 -new -key private.key -out certificate.crt -days 365 -config openssl.cnf</code>    
+            <code>sudo apt-get update</code><br/>    
+            <code>sudo apt-get install openssl</code><br/>
+            <code>openssl genrsa -out private.key 2048</code><br/>
+            <code>echo "<br/>
+                [ req ]<br/>
+                default_bits        = 2048<br/>
+                distinguished_name  = req_distinguished_name<br/>
+                req_extensions      = req_ext<br/>
+                x509_extensions     = v3_ca # The default uses v3_ca for self-signed certs<br/>
+                prompt              = no<br/>
+                <br/>
+                [ req_distinguished_name ]<br/>
+                C                   = NL<br/>
+                ST                  = North Holland<br/>
+                L                   = Amsterdam<br/>
+                O                   = MyCompany<br/>
+                CN                  = enter your domain or host ip name here<br/>
+                <br/>
+                [ req_ext ]<br/>
+                subjectAltName      = @alt_names<br/>
+                <br/>
+                [ v3_ca ]<br/>
+                subjectAltName      = @alt_names<br/>
+                <br/>
+                [ alt_names ]<br/>
+                IP.1                = enter your domain or host ip name here<br/>
+                DNS.1               = tower" > openssl.cnf</code><br/>
+            <code>openssl req -x509 -new -key private.key -out certificate.crt -days 365 -config openssl.cnf</code><br/>
         </p>
         <p>
           This will create a self-signed certificate for your registry. You can now push and pull images from your registry.
@@ -134,8 +134,8 @@
             Copy the certificate and key to the registry <stong>cert</stong>folder :<br/>
         </p>    
         <p>
-            <code>cp certificate.crt /mnt/user/appdata/registry/certs</code>
-            <code>cp private.key /mnt/user/appdata/registry/certs</code>
+            <code>cp certificate.crt /mnt/user/appdata/registry/certs</code><br/>
+            <code>cp private.key /mnt/user/appdata/registry/certs</code><br/>
         </p>
         <p>
             <img src="https://mariuscloete.github.io/assets/images/docker_registry/unraid config.png" alt="registry" width="500" height="600">
@@ -144,9 +144,9 @@
             Restart the container and you should now be able to access your registry on https://[your-ip]:5000
         </p>
         <p>
-            If you are connecting from a remote machine you will need to add the certificate to your trusted certificates.
-            <code>scp certificate.crt remoteuser@remotehost:/etc/docker/certs.d/[docker-registry-ip]:5000/ca.crt</code>
-            <code>sudo systemctl restart docker</code>
+            If you are connecting from a remote machine you will need to add the certificate to your trusted certificates.<br/>
+            <code>scp certificate.crt remoteuser@remotehost:/etc/docker/certs.d/[docker-registry-ip]:5000/ca.crt</code><br/>
+            <code>sudo systemctl restart docker</code><br/>
         </p>
         <p>
             You can now push and pull images from your registry.
@@ -155,10 +155,10 @@
             If you are using a self-signed certificate you will need to add the certificate to your trusted certificates.
         </p>    
         <p>
-            <code>docker login [docker-registry-ip]:5000</code>
-            <code>docker tag [docker-registry-ip]:5000/[image-name]</code>
-            <code>docker push [docker-registry-ip]:5000/[image-name]</code>
-            <code>curl -X GET https://[docker-registry-ip]:5000/v2/_catalog</code>
+            <code>docker login [docker-registry-ip]:5000</code><br/>
+            <code>docker tag [docker-registry-ip]:5000/[image-name]</code><br/>
+            <code>docker push [docker-registry-ip]:5000/[image-name]</code><br/>
+            <code>curl -X GET https://[docker-registry-ip]:5000/v2/_catalog</code><br/>
         </p>
       </div>
     </section>
