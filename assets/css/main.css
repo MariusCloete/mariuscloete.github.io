@@ -29,3 +29,7 @@ a:link {
   a:active {
     color: rgb(14, 14, 20);
   }
+  .card-body {
+    background-color: #f8f9fa;
+    overflow: clip;
+  }
