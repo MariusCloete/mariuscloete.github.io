@@ -30,6 +30,8 @@ a:link {
     color: rgb(14, 14, 20);
   }
   .card-body {
+    height: ;
     background-color: #f8f9fa;
     overflow: clip;
+    height: 300px;
   }
