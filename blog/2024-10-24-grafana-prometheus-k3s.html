@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+    <title>The Archive</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../assets/css/main.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-muted">...</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                <li><a href="#" class="text-white">Like on Facebook</a></li>
+                <li><a href="#" class="text-white">Email me</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>Album</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+  <main role="main">
+
+    <section class="jumbotron text-center">
+      
+      <div class="container">
+        <h1 class="jumbotron-heading">Install instruction for Grafana and Prometheus on K3s</h1>
+        <p class="lead text-left">
+          This is a guide on how to install Grafana and Prometheus on K3s.
+        </p>
+        <p>
+          Add the helm charts to you repo: <br/>
+          <strong>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts</strong>
+        </p>
+        <p>
+            Install prometheus-stack:<br/>
+            <strong>helm install kube-prometheus-stack --create-namespace --namespace prometheus prometheus-community/kube-prometheus-stack</strong>
+        </p>
+        
+        <p>
+            Confirm everything is running:<br/>
+            <strong>kubectl get pods -n prometheus</strong>
+        </p>
+        <p>
+            Make a backup of the Grafana service that was created by defualt and then delete it:<br/>
+            <strong>
+                kubectl get svc kube-prometheus-stack-grafana -n prometheus -o yaml > kube-prometheus-stack-grafana.yaml<br/>
+                kubectl delete -f  kube-prometheus-stack-grafana.yaml
+            </strong>
+        </p>
+        <p>
+            Create and expose a new Grafana service:<br/>
+            <strong>
+                kubectl expose deployment kube-prometheus-stack-grafana --type=LoadBalancer -n prometheus
+            </strong>
+        </p>
+        <p>
+            Confirm the Grafana service is running:<br/>
+            <strong>
+                kubectl get svc kube-prometheus-stack-grafana -n prometheus
+            </strong>
+        </p>
+        <p>
+            Get the external IP and port of the Grafana service:<br/>
+            <strong>
+                kubectl get svc kube-prometheus-stack-grafana -n prometheus -o jsonpath='{.status.loadBalancer.ingress[0].ip}'; echo<br/>
+                kubectl get svc kube-prometheus-stack-grafana -n prometheus -o jsonpath='{.spec.ports[0].port}'; echo <br/>
+            </strong> 
+        </p>      
+        <p>
+            Once you have the IP and port you can access Grafana in your browser:<br/>
+            User: admin<br/>
+            Password: prom-operator<br/>
+        </p>
+      
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row" id="cards-container">
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Back to top</a>
+      </p>
+      <p>Archive</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+  <script src="../assets/js/vendor/popper.min.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <script src=".../assets/js/vendor/holder.min.js"></script>
+</body>
+</html>

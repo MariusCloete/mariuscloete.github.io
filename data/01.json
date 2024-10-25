@@ -8,12 +8,28 @@
         "tags": ["k3s", "kubernetes", "rock64"]
     },
     {
-        "title": "Installing and confurering private Docker registry", 
+        "title": "Installing and configure private Docker registry",
         "date": "2024-09-09",     
         "content" : "This is a guide on how to install and configure a private Docker registry on Unraid. A private Docker registry is a great way to store your Docker images and share them with your team. It is also a great way to speed up your builds by caching your images locally.",   
         "thumbnail" : "https://mariuscloete.github.io/assets/thumbnails/unraid_reg.png",
         "url": "https://mariuscloete.github.io/blog/2024-09-09-unraid-private-registry.html",
         "tags": ["docker", "registry", "unraid"]
+    },
+    {
+        "title": "Linking k3s with helm", 
+        "date": "2024-10-24",     
+        "content" : "This is a quick note on how to link k3s with helm.",   
+        "thumbnail" : "https://mariuscloete.github.io/assets/thumbnails/helm_k8s.png",
+        "url": "https://mariuscloete.github.io/blog/2024-10-24-k3s-helm.html",
+        "tags": ["kubernetes", "k3s", "helm"]
+    },
+    {
+        "title": "Grafana and Prometheus on K3s", 
+        "date": "2024-10-24",     
+        "content" : "Install instruction for Grafana and Prometheus on K3s.",   
+        "thumbnail" : "https://mariuscloete.github.io/assets/thumbnails/grafana_prometheus_k3s.png",
+        "url": "https://mariuscloete.github.io/blog/2024-10-24-grafana-prometheus-k3s.html",
+        "tags": ["kubernetes", "k3s", "Grafana", "Prometheus"]
     }
     ]
 }

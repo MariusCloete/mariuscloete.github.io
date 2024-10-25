@@ -157,7 +157,7 @@
         </p>    
         <p>
             <code>docker login [docker-registry-ip]:5000</code><br/>
-            <code>docker tag [docker-registry-ip]:5000/[image-name]</code><br/>
+            <code>docker tag  SOURCE_IMAGE[:TAG] [docker-registry-ip]:5000/[image-name]</code><br/>
             <code>docker push [docker-registry-ip]:5000/[image-name]</code><br/>
             <code>curl -X GET https://[docker-registry-ip]:5000/v2/_catalog</code><br/>
         </p>
