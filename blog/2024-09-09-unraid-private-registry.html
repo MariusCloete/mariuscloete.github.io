@@ -86,49 +86,49 @@
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">cd  /mnt/user/appdata/registry</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block1">cd  /mnt/user/appdata/registry</code>
+            <img onclick="copyCode('code-block1')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">mkdir auth</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block2">mkdir auth</code>
+            <img onclick="copyCode('code-block2')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">mkdir certs</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block3">mkdir certs</code>
+            <img onclick="copyCode('code-block3')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">docker run --entrypoint htpasswd httpd:2 -Bbn [user_name] [password] > auth/htpasswd</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block4">docker run --entrypoint htpasswd httpd:2 -Bbn [user_name] [password] > auth/htpasswd</code>
+            <img onclick="copyCode('code-block4')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">sudo apt-get update</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block5">sudo apt-get update</code>
+            <img onclick="copyCode('code-block5')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">sudo apt-get install openssl</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block6">sudo apt-get install openssl</code>
+            <img onclick="copyCode('code-block6')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">openssl genrsa -out private.key 2048</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block7">openssl genrsa -out private.key 2048</code>
+            <img onclick="copyCode('code-block7')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">echo "<br/>
+            <code id="code-block8">echo "<br/>
               [ req ]<br/>
               default_bits        = 2048<br/>
               distinguished_name  = req_distinguished_name<br/>
@@ -152,13 +152,13 @@
               [ alt_names ]<br/>
               IP.1                = enter your domain or host ip name here<br/>
               DNS.1               = tower" > openssl.cnf</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <img onclick="copyCode('code-block8')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">openssl req -x509 -new -key private.key -out certificate.crt -days 365 -config openssl.cnf</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block9">openssl req -x509 -new -key private.key -out certificate.crt -days 365 -config openssl.cnf</code>
+            <img onclick="copyCode('code-block9')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
@@ -172,14 +172,14 @@
         </p>    
         <p>
           <div class="code-container">
-            <code id="code-block">cp certificate.crt /mnt/user/appdata/registry/certs</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block10">cp certificate.crt /mnt/user/appdata/registry/certs</code>
+            <img onclick="copyCode('code-block10')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">cp private.key /mnt/user/appdata/registry/certs</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block11">cp private.key /mnt/user/appdata/registry/certs</code>
+            <img onclick="copyCode('code-block11')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
        
@@ -189,14 +189,14 @@
         <p>
             If you are connecting from a remote machine you will need to add the certificate to your trusted certificates.<br/>
             <div class="code-container">
-              <code id="code-block">scp certificate.crt remoteuser@remotehost:/etc/docker/certs.d/[docker-registry-ip]:5000/ca.crt</code>
-              <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+              <code id="code-block12">scp certificate.crt remoteuser@remotehost:/etc/docker/certs.d/[docker-registry-ip]:5000/ca.crt</code>
+              <img onclick="copyCode('code-block12')" src="../assets/icons/copy.gif"/>
             </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">sudo systemctl restart docker</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block13">sudo systemctl restart docker</code>
+            <img onclick="copyCode('code-block13')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
@@ -207,26 +207,26 @@
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">docker login [docker-registry-ip]:5000</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block14">docker login [docker-registry-ip]:5000</code>
+            <img onclick="copyCode('code-block14')" src="../assets/icons/copy.gif"/>
           </div>
         </p> 
         <p>
           <div class="code-container">
-            <code id="code-block">docker tag  SOURCE_IMAGE[:TAG] [docker-registry-ip]:5000/[image-name]</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block14">docker tag  SOURCE_IMAGE[:TAG] [docker-registry-ip]:5000/[image-name]</code>
+            <img onclick="copyCode('code-block14')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">docker push [docker-registry-ip]:5000/[image-name]</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block15">docker push [docker-registry-ip]:5000/[image-name]</code>
+            <img onclick="copyCode('code-block15')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">curl -X GET https://[docker-registry-ip]:5000/v2/_catalog</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block16">curl -X GET https://[docker-registry-ip]:5000/v2/_catalog</code>
+            <img onclick="copyCode('code-block16)" src="../assets/icons/copy.gif"/>
           </div>
         </p>      
       </div>

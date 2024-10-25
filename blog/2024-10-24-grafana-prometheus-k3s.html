@@ -52,62 +52,62 @@
         <p>
           <div class="code-container">
             Add the helm charts to you repo: <br/>
-            <code id="code-block">helm repo add prometheus-community https://prometheus-community.github.io/helm-charts</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block1">helm repo add prometheus-community https://prometheus-community.github.io/helm-charts</code>
+            <img onclick="copyCode('code-block1')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             Install prometheus-stack:<br/>
-            <code id="code-block">helm install kube-prometheus-stack --create-namespace --namespace prometheus prometheus-community/kube-prometheus-stack</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block2">helm install kube-prometheus-stack --create-namespace --namespace prometheus prometheus-community/kube-prometheus-stack</code>
+            <img onclick="copyCode('code-block2')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             Confirm everything is running:<br/>
-            <code id="code-block">kubectl get pods -n prometheus</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block3">kubectl get pods -n prometheus</code>
+            <img onclick="copyCode('code-block3')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             Make a backup of the Grafana service that was created by defualt and then delete it:<br/>
-            <code id="code-block">kubectl get svc kube-prometheus-stack-grafana -n prometheus -o yaml > kube-prometheus-stack-grafana.yaml</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block4">kubectl get svc kube-prometheus-stack-grafana -n prometheus -o yaml > kube-prometheus-stack-grafana.yaml</code>
+            <img onclick="copyCode('code-block4')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">kubectl delete -f  kube-prometheus-stack-grafana.yaml</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block5">kubectl delete -f  kube-prometheus-stack-grafana.yaml</code>
+            <img onclick="copyCode('code-block5')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             Create and expose a new Grafana service:<br/>
-            <code id="code-block">kubectl expose deployment kube-prometheus-stack-grafana --type=LoadBalancer -n prometheus</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block6">kubectl expose deployment kube-prometheus-stack-grafana --type=LoadBalancer -n prometheus</code>
+            <img onclick="copyCode('code-block6')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             Confirm the Grafana service is running:<br/>
-            <code id="code-block">kubectl get svc kube-prometheus-stack-grafana -n prometheus</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block7">kubectl get svc kube-prometheus-stack-grafana -n prometheus</code>
+            <img onclick="copyCode('code-block7')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             Get the external IP and port of the Grafana service:<br/>
-            <code id="code-block">kubectl get svc kube-prometheus-stack-grafana -n prometheus -o jsonpath='{.status.loadBalancer.ingress[0].ip}'; echo</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block8">kubectl get svc kube-prometheus-stack-grafana -n prometheus -o jsonpath='{.status.loadBalancer.ingress[0].ip}'; echo</code>
+            <img onclick="copyCode('code-block8')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
-            <code id="code-block">kubectl get svc kube-prometheus-stack-grafana -n prometheus -o jsonpath='{.spec.ports[0].port}'; echo</code>
-            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+            <code id="code-block9">kubectl get svc kube-prometheus-stack-grafana -n prometheus -o jsonpath='{.spec.ports[0].port}'; echo</code>
+            <img onclick="copyCode('code-block9')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
