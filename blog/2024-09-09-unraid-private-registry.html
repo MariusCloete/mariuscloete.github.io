@@ -12,7 +12,7 @@
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="../assets/css/main.css" rel="stylesheet">
-    <script src="main.js"></script>
+    <script src="../assets/js/main.js"></script>
   </head>
 
   <body>
@@ -87,43 +87,43 @@
         <p>
           <div class="code-container">
             <code id="code-block">cd  /mnt/user/appdata/registry</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">mkdir auth</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">mkdir certs</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">docker run --entrypoint htpasswd httpd:2 -Bbn [user_name] [password] > auth/htpasswd</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">sudo apt-get update</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">sudo apt-get install openssl</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">openssl genrsa -out private.key 2048</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
@@ -152,13 +152,13 @@
               [ alt_names ]<br/>
               IP.1                = enter your domain or host ip name here<br/>
               DNS.1               = tower" > openssl.cnf</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">openssl req -x509 -new -key private.key -out certificate.crt -days 365 -config openssl.cnf</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
@@ -173,13 +173,13 @@
         <p>
           <div class="code-container">
             <code id="code-block">cp certificate.crt /mnt/user/appdata/registry/certs</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">cp private.key /mnt/user/appdata/registry/certs</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
        
@@ -190,13 +190,13 @@
             If you are connecting from a remote machine you will need to add the certificate to your trusted certificates.<br/>
             <div class="code-container">
               <code id="code-block">scp certificate.crt remoteuser@remotehost:/etc/docker/certs.d/[docker-registry-ip]:5000/ca.crt</code>
-              <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+              <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
             </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">sudo systemctl restart docker</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
@@ -208,25 +208,25 @@
         <p>
           <div class="code-container">
             <code id="code-block">docker login [docker-registry-ip]:5000</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p> 
         <p>
           <div class="code-container">
             <code id="code-block">docker tag  SOURCE_IMAGE[:TAG] [docker-registry-ip]:5000/[image-name]</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">docker push [docker-registry-ip]:5000/[image-name]</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             <code id="code-block">curl -X GET https://[docker-registry-ip]:5000/v2/_catalog</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>      
       </div>

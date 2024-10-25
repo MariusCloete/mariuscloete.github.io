@@ -12,7 +12,7 @@
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="../assets/css/main.css" rel="stylesheet">
-    <script src="main.js"></script>
+    <script src="../assets/js/main.js"></script>
   </head>
 
   <body>
@@ -52,14 +52,14 @@
           <div class="code-container">
             To Link Helm to k3s you need to run one command:<br/>
             <code id="code-block">KUBECONFIG=/etc/rancher/k3s/k3s.yaml</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
         <p>
           <div class="code-container">
             Do quick test:<br/>
             <code id="code-block">helm ls --all-namespaces</code>
-            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
       </div>

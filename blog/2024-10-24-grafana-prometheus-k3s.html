@@ -12,7 +12,7 @@
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="../assets/css/main.css" rel="stylesheet">
-    <script src="main.js"></script>
+    <script src="../assets/js/main.js"></script>
   </head>
 
   <body>
@@ -48,45 +48,68 @@
         <p class="lead text-left">
           This is a guide on how to install Grafana and Prometheus on K3s.
         </p>
-        <p>
-          Add the helm charts to you repo: <br/>
-          <strong>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts</strong>
-        </p>
-        <p>
-            Install prometheus-stack:<br/>
-            <strong>helm install kube-prometheus-stack --create-namespace --namespace prometheus prometheus-community/kube-prometheus-stack</strong>
-        </p>
         
         <p>
+          <div class="code-container">
+            Add the helm charts to you repo: <br/>
+            <code id="code-block">helm repo add prometheus-community https://prometheus-community.github.io/helm-charts</code>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+          </div>
+        </p>
+        <p>
+          <div class="code-container">
+            Install prometheus-stack:<br/>
+            <code id="code-block">helm install kube-prometheus-stack --create-namespace --namespace prometheus prometheus-community/kube-prometheus-stack</code>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+          </div>
+        </p>
+        <p>
+          <div class="code-container">
             Confirm everything is running:<br/>
-            <strong>kubectl get pods -n prometheus</strong>
+            <code id="code-block">kubectl get pods -n prometheus</code>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+          </div>
         </p>
         <p>
+          <div class="code-container">
             Make a backup of the Grafana service that was created by defualt and then delete it:<br/>
-            <strong>
-                kubectl get svc kube-prometheus-stack-grafana -n prometheus -o yaml > kube-prometheus-stack-grafana.yaml<br/>
-                kubectl delete -f  kube-prometheus-stack-grafana.yaml
-            </strong>
+            <code id="code-block">kubectl get svc kube-prometheus-stack-grafana -n prometheus -o yaml > kube-prometheus-stack-grafana.yaml</code>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+          </div>
         </p>
         <p>
+          <div class="code-container">
+            <code id="code-block">kubectl delete -f  kube-prometheus-stack-grafana.yaml</code>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+          </div>
+        </p>
+        <p>
+          <div class="code-container">
             Create and expose a new Grafana service:<br/>
-            <strong>
-                kubectl expose deployment kube-prometheus-stack-grafana --type=LoadBalancer -n prometheus
-            </strong>
+            <code id="code-block">kubectl expose deployment kube-prometheus-stack-grafana --type=LoadBalancer -n prometheus</code>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+          </div>
         </p>
         <p>
+          <div class="code-container">
             Confirm the Grafana service is running:<br/>
-            <strong>
-                kubectl get svc kube-prometheus-stack-grafana -n prometheus
-            </strong>
+            <code id="code-block">kubectl get svc kube-prometheus-stack-grafana -n prometheus</code>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+          </div>
         </p>
         <p>
+          <div class="code-container">
             Get the external IP and port of the Grafana service:<br/>
-            <strong>
-                kubectl get svc kube-prometheus-stack-grafana -n prometheus -o jsonpath='{.status.loadBalancer.ingress[0].ip}'; echo<br/>
-                kubectl get svc kube-prometheus-stack-grafana -n prometheus -o jsonpath='{.spec.ports[0].port}'; echo <br/>
-            </strong> 
-        </p>      
+            <code id="code-block">kubectl get svc kube-prometheus-stack-grafana -n prometheus -o jsonpath='{.status.loadBalancer.ingress[0].ip}'; echo</code>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+          </div>
+        </p>
+        <p>
+          <div class="code-container">
+            <code id="code-block">kubectl get svc kube-prometheus-stack-grafana -n prometheus -o jsonpath='{.spec.ports[0].port}'; echo</code>
+            <img onclick="copyCode('code-block')" src="../assets/icons/copy.gif"/>
+          </div>
+        </p>
         <p>
             Once you have the IP and port you can access Grafana in your browser:<br/>
             User: admin<br/>
