@@ -42,6 +42,7 @@ a:link {
   /* New CSS for Copy Button */
   .code-container {
     position: relative;
+    text-align: left;
   }
   
   .copy-btn {
