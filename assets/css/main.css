@@ -30,8 +30,32 @@ a:link {
     color: rgb(14, 14, 20);
   }
   .card-body {
-    height: ;
     background-color: #f8f9fa;
     overflow: clip;
     height: 250px;
+  }
+  code {
+    font-size: 1.25em;
+  }
+  
+  /* New CSS for Copy Button */
+  .code-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .copy-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.875em;
+  }
+  
+  .copy-btn:hover {
+    background-color: #0056b3;
   }

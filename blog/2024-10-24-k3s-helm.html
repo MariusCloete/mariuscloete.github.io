@@ -12,6 +12,7 @@
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="../assets/css/main.css" rel="stylesheet">
+    <script src="main.js"></script>
   </head>
 
   <body>
@@ -39,34 +40,36 @@
       </div>
     </header>
   <main role="main">
-
     <section class="jumbotron text-center">
-      
       <div class="container">
         <h1 class="jumbotron-heading">Helm with k3s</h1>
         <p class="lead text-left">
-          So you would like to use Helm with k3s? Then the first thing you need to do is install Helm.
-          <strong>After that you need to link Helm to k3s.</strong>
+            So you would like to use Helm with k3s? <br>
+            Then the first thing you need to do is install Helm.<br/>
+            After that you need to link Helm to k3s.
         </p>
         <p>
-          To Link Helm to k3s you need to run one command:<br/>
-          <strong>KUBECONFIG=/etc/rancher/k3s/k3s.yaml</strong>
+          <div class="code-container">
+            To Link Helm to k3s you need to run one command:<br/>
+            <code id="code-block">KUBECONFIG=/etc/rancher/k3s/k3s.yaml</code>
+            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+          </div>
         </p>
         <p>
+          <div class="code-container">
             Do quick test:<br/>
-            <strong>helm ls --all-namespaces</strong>
-          </p>
+            <code id="code-block">helm ls --all-namespaces</code>
+            <button class="copy-btn" onclick="copyCode('code-block')">Copy</button>
+          </div>
+        </p>
       </div>
     </section>
-
     <div class="album py-5 bg-light">
       <div class="container">
-
         <div class="row" id="cards-container">
         </div>
       </div>
     </div>
-
   </main>
   <footer class="text-muted">
     <div class="container">
