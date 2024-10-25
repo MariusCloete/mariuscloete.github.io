@@ -36,6 +36,7 @@ a:link {
   }
   code {
     font-size: 1.25em;
+    text-align: left;
   }
   
   /* New CSS for Copy Button */
