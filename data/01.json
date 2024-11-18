@@ -35,7 +35,7 @@
         "title": "Prometheus Spring Boot and Grafana", 
         "date": "2024-10-28",     
         "content" : "How to configure prometheus and grafana for a spring boot application.",   
-        "thumbnail" : "https://mariuscloete.github.io/assets/thumbnails/grafana_prometheus_k3s.png",
+        "thumbnail" : "https://mariuscloete.github.io/assets/thumbnails/grafana_prometheus_springboot.png",
         "url": "https://mariuscloete.github.io/blog/2024-10-28-prometheus-spring-boot-grafana.html",
         "tags": ["kubernetes", "Spring Boot", "Grafana", "Prometheus"]
     }

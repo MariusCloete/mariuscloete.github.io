@@ -47,23 +47,21 @@
         <h1 class="jumbotron-heading">How to configure prometheus to scrape a String boot app.</h1>
         <p class="lead text-left">
           In this guide we will add Spring boot actuators to a Spring boot app and configure prometheus to scrape the metrics.
-
         </p>
-        
         <p>
           <div class="code-container">
             We will start by adding the dependancies to the pom file of the spring boot app. <br/>
             <code id="code-block1">
               &lt;dependency&gt;<br/>
-                &Tab;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br/>
-                &Tab;&lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;<br/>
-                &Tab;&lt;version&gt;3.3.2&lt;/version&gt;<br/>
+              &nbsp;&nbsp;&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br/>
+              &nbsp;&nbsp;&lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;<br/>
+              &nbsp;&nbsp;&lt;version&gt;3.3.2&lt;/version&gt;<br/>
               &lt;/dependency&gt;<br/>
-            &lt;dependency&gt;<br/>
-              &Tab;&lt;groupId&gt;io.micrometer&lt;/groupId&gt;<br/>
-              &Tab;&lt;artifactId&gt;micrometer-registry-prometheus&lt;/artifactId&gt;<br/>
-              &Tab;&lt;scope&gt;runtime&lt;/scope&gt;<br/>
-            &lt;/dependency&gt;<br/>
+              &lt;dependency&gt;<br/>
+              &nbsp;&nbsp;&lt;groupId&gt;io.micrometer&lt;/groupId&gt;<br/>
+              &nbsp;&nbsp;&lt;artifactId&gt;micrometer-registry-prometheus&lt;/artifactId&gt;<br/>
+              &nbsp;&nbsp;&lt;scope&gt;runtime&lt;/scope&gt;<br/>
+              &lt;/dependency&gt;<br/>
             </code>
             <img onclick="copyCode('code-block1')" src="../assets/icons/copy.gif"/>
           </div>
@@ -76,11 +74,11 @@
                 &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;<br/>
                 &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;<br/>
                 &lt;executions&gt;<br/>
-                &Tab;&lt;execution&gt;<br/>
-                  &Tab;&Tab;&lt;goals&gt;<br/>
-                    &Tab;&Tab;&Tab;&lt;goal&gt;build-info&lt;/goal&gt;<br/>
-                  &Tab;&Tab;&lt;/goals&gt;<br/>
-                &Tab;&lt;/execution&gt;<br/>
+                &nbsp;&nbsp;&lt;execution&gt;<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;goals&gt;<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&Tab;&lt;goal&gt;build-info&lt;/goal&gt;<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&lt;/goals&gt;<br/>
+                &nbsp;&nbsp;&lt;/execution&gt;<br/>
                 &lt;/executions&gt;<br/>
             </plugin>
             </code>
@@ -97,16 +95,49 @@
             <img onclick="copyCode('code-block3')" src="../assets/icons/copy.gif"/>
           </div>
         </p>
+        <p>
+          <div class="code-container">
+            You can test the actuators by going to these links<br/>
+            <code id="code-block4">
+              [app url]/actuator/prometheus<br/>
+              [app url]/actuator/metrics<br/>
+              [app url]/actuator/health<br/>
+            </code>
+            <img onclick="copyCode('code-block4')" src="../assets/icons/copy.gif"/>
+          </div>
+        </p>
+        <p>
+          <div class="code-container">
+            Next you would need to update the prometheus config to scrape the metrics<br/>
+            You and get the template values file 
+            <a href="https://raw.githubusercontent.com/prometheus-community/helm-charts/refs/heads/main/charts/prometheus/values.yaml">here</a>. <br/>
+            Find the "scrape_configs" section and add the following job the the list of jobs<br/>
+            <code id="code-block5">
+              - job_name: myapp<br/>
+              &nbsp;&nbsp;static_configs:<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;- targets:<br/>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- localhost:8080<br/>
+            </code>
+            <img onclick="copyCode('code-block5')" src="../assets/icons/copy.gif"/>
+          </div>
+        </p>
+        <p>
+          <div class="code-container">
+            Update the config file in the Prometheus install<br/>
+            <code id="code-block6">
+              helm upgrade -f values.yml kube-prometheus-stack --namespace prometheus prometheus-community/kube-prometheus-stack
+            </code>
+            <img onclick="copyCode('code-block6')" src="../assets/icons/copy.gif"/>
+          </div>
+        </p>
       </div>
     </section>
-
     <div class="album py-5 bg-light">
       <div class="container">
         <div class="row" id="cards-container">
         </div>
       </div>
     </div>
-
   </main>
   <footer class="text-muted">
     <div class="container">
