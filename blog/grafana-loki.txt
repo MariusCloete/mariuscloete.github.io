@@ -2,6 +2,12 @@ When installing loki on unraid you may see this error
 
 failed parsing config: open /etc/loki/local-config.yaml: no such file or directory
 To fix it just create that directory and file manualy
+
 find the etc path for you install
 mkdir /mnt/user/appdata/loki/conf/
 touch /mnt/user/appdata/loki/conf/local-config.yaml
+
+When the loki service is running we can configure the cluster
+
+helm repo add grafana https://grafana.github.io/helm-charts
+helm upgrade --install --values values.yml loki grafana/loki-stack -n grafana-loki --create-namespace

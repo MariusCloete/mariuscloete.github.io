@@ -1,0 +1,41 @@
+global:
+  scrape_interval: 15s  # Default scrape interval for all targets
+  evaluation_interval: 15s  # Default evaluation interval for all rules
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090','control:9090']
+
+  - job_name: 'node_exporter'
+    static_configs:
+      - targets: ['localhost:9100','control:9100','worker2:9100','worker1:9100']
+
+  - job_name: 'spring_boot'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['localhost:8080','control:8081']
+
+  - job_name: 'k3s-apiservers'
+    kubernetes_sd_configs:
+      - api_server: 'http://192.168.2.43'
+        role: endpoints
+        bearer_token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6InI3X1hUVElibW1oaHUzcjBwdFB4cDhVN0hUVnZjQjNaY2wzaGVZVDYyMDAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJtb25pdG9yaW5nIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InByb21ldGhldXMtdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoicHJvbWV0aGV1cyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjNhNDkxZjI0LWNmMjQtNDljYy1iNDI4LWZiNmIxNzEwOWU4NSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDptb25pdG9yaW5nOnByb21ldGhldXMifQ.er54LrXwVWgxT4M4R3Wx7neMgSRpxbxemM-mRw-sQmkKFfCgdYfx4dY5hpmeVLFjbJ9TfkBCnL5LROgJeHjmYuCVHQA123lrwZaDfwG6_UTqTM74I8VGOk9NIwcelKTmPiHyiZi8JahoPTVoHfE3LyNICc0Wfz0oNU4Cu69jOqVdMqTh5sF8HyThbdxEaBnk5BZbQF-cDjlMbuH38Z_Yo88XTH_Egfe3uT_UfkJHKoqco-vi4Wb97TjlxPDzKxD5z3lLipjAwOL-zWtFCeyN39p48IlyfXxE17GBprl47yL-epOjvZqVcqqPAiiXaGa2pd1_iHpTapXj4FDnlkLViw'
+        tls_config:
+          insecure_skip_verify: true
+
+  - job_name: 'k3s-nodes'
+    kubernetes_sd_configs:
+      - api_server: 'http://control'
+        role: node
+        bearer_token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6InI3X1hUVElibW1oaHUzcjBwdFB4cDhVN0hUVnZjQjNaY2wzaGVZVDYyMDAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJtb25pdG9yaW5nIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InByb21ldGhldXMtdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoicHJvbWV0aGV1cyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjNhNDkxZjI0LWNmMjQtNDljYy1iNDI4LWZiNmIxNzEwOWU4NSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDptb25pdG9yaW5nOnByb21ldGhldXMifQ.er54LrXwVWgxT4M4R3Wx7neMgSRpxbxemM-mRw-sQmkKFfCgdYfx4dY5hpmeVLFjbJ9TfkBCnL5LROgJeHjmYuCVHQA123lrwZaDfwG6_UTqTM74I8VGOk9NIwcelKTmPiHyiZi8JahoPTVoHfE3LyNICc0Wfz0oNU4Cu69jOqVdMqTh5sF8HyThbdxEaBnk5BZbQF-cDjlMbuH38Z_Yo88XTH_Egfe3uT_UfkJHKoqco-vi4Wb97TjlxPDzKxD5z3lLipjAwOL-zWtFCeyN39p48IlyfXxE17GBprl47yL-epOjvZqVcqqPAiiXaGa2pd1_iHpTapXj4FDnlkLViw'
+        tls_config:
+          insecure_skip_verify: true
+
+  - job_name: 'k3s-pods'
+    kubernetes_sd_configs:
+      - api_server: 'http://control'
+        role: pod
+        bearer_token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6InI3X1hUVElibW1oaHUzcjBwdFB4cDhVN0hUVnZjQjNaY2wzaGVZVDYyMDAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJtb25pdG9yaW5nIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InByb21ldGhldXMtdG9rZW4iLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoicHJvbWV0aGV1cyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjNhNDkxZjI0LWNmMjQtNDljYy1iNDI4LWZiNmIxNzEwOWU4NSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDptb25pdG9yaW5nOnByb21ldGhldXMifQ.er54LrXwVWgxT4M4R3Wx7neMgSRpxbxemM-mRw-sQmkKFfCgdYfx4dY5hpmeVLFjbJ9TfkBCnL5LROgJeHjmYuCVHQA123lrwZaDfwG6_UTqTM74I8VGOk9NIwcelKTmPiHyiZi8JahoPTVoHfE3LyNICc0Wfz0oNU4Cu69jOqVdMqTh5sF8HyThbdxEaBnk5BZbQF-cDjlMbuH38Z_Yo88XTH_Egfe3uT_UfkJHKoqco-vi4Wb97TjlxPDzKxD5z3lLipjAwOL-zWtFCeyN39p48IlyfXxE17GBprl47yL-epOjvZqVcqqPAiiXaGa2pd1_iHpTapXj4FDnlkLViw'
+        tls_config:
+          insecure_skip_verify: true
